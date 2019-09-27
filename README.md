@@ -607,7 +607,8 @@ public class ExceptionHandle {
 
 
 
-### 五、[git传送门](https://github.com/Yobin123/base_mvp)
+### 五、[git传送门](https://github.com/Yobin123/net_library.git)
+       [简书传送门](https://github.com/Yobin123/net_library.git)
 
 ### 六、参考 
 [1.Rxjava2+Retrofit2+MVP的网络请求封装](https://www.jianshu.com/p/193d8c37c73c)
