@@ -39,4 +39,8 @@ dependencies {
     // 必要依赖，解析json字符所用
     implementation 'com.squareup.okhttp3:logging-interceptor:3.8.1'
     implementation 'com.google.code.gson:gson:2.8.5'
+    //图片加载框架
+    api 'com.github.bumptech.glide:glide:3.7.0'
+    implementation project(':image_preview_library')
+    implementation 'jp.wasabeef:glide-transformations:2.0.2'
 }

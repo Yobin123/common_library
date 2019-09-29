@@ -9,6 +9,7 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/image_preview_library" />
             <option value="$PROJECT_DIR$/mvp_base_library" />
             <option value="$PROJECT_DIR$/mvp_without_activity_library" />
             <option value="$PROJECT_DIR$/net_library" />

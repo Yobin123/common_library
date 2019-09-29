@@ -1,19 +1,25 @@
 package com.yobin_he.packagedemo.mvp.views;
 
 import android.view.View;
-import android.widget.TextView;
+import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.mvp_base_library.view.base.BaseActivity;
+import com.yobin_he.image_preview_library.PreviewActivity;
+import com.yobin_he.image_preview_library.entry.Image;
 import com.yobin_he.packagedemo.R;
 import com.yobin_he.packagedemo.beans.GankBean;
 import com.yobin_he.packagedemo.mvp.contracts.WelfareContract;
 import com.yobin_he.packagedemo.mvp.presenters.WalefarePresenterImpl;
+import com.yobin_he.packagedemo.utils.DateUtil;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends BaseActivity<WelfareContract.IWelfarePresenter> implements WelfareContract.IWelfareView {
-    private TextView tv;
+    private ImageView imageView;
+    private List<GankBean> list = new ArrayList<>();
 
 
     @Override
@@ -28,12 +34,12 @@ public class MainActivity extends BaseActivity<WelfareContract.IWelfarePresenter
 
     @Override
     protected void initView() {
-        tv = fv(R.id.tv);
+        imageView = fv(R.id.iv);
     }
 
     @Override
     protected void addListener() {
-
+        imageView.setOnClickListener(this);
     }
 
     @Override
@@ -47,7 +53,18 @@ public class MainActivity extends BaseActivity<WelfareContract.IWelfarePresenter
 
     @Override
     public void onClick(View v) {
-
+        switch (v.getId()) {
+            case R.id.iv:
+                ArrayList<Image> arrayList = new ArrayList<>();
+                for (int i = 0; i < list.size(); i++) {
+                    Image image = new Image(list.get(i).getUrl(),
+                            DateUtil.dateToLongStamp(list.get(i).getDesc(), false),
+                            list.get(i).getWho(), list.get(i).getType());
+                    arrayList.add(image);
+                }
+                PreviewActivity.openActivity(getSelfActivity(), arrayList, arrayList, true, -1, 0);
+                break;
+        }
     }
 
     @Override
@@ -67,6 +84,7 @@ public class MainActivity extends BaseActivity<WelfareContract.IWelfarePresenter
 
     @Override
     public void onNetSuccess(List<GankBean> beans) {
-        tv.setText(beans.toString());
+        Glide.with(getSelfActivity()).load(beans.get(0).getUrl()).into(imageView);
+        this.list = beans;
     }
 }
